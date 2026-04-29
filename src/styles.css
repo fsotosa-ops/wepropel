@@ -68,65 +68,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* ─── PHASE CARDS — versión liviana (override de .panel) ────────── */
-.phase-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background: rgba(255, 255, 255, 0.012);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 380ms cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 380ms cubic-bezier(0.22, 1, 0.36, 1),
-                background 380ms cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 380ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.phase-card::before {
-    content: "";
-    position: absolute;
-    top: -1px; left: 16px; right: 16px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.5;
-    transition: opacity 380ms ease, box-shadow 380ms ease;
-}
-
-/* Active: sutil */
-.phase-card.is-active {
-    transform: scale(1.02);
-    background: rgba(255, 255, 255, 0.025);
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 18px 48px -16px var(--accent-shadow);
-}
-.phase-card.is-active::before {
-    opacity: 1;
-    box-shadow: 0 0 14px var(--accent);
-}
-
-/* Dimmed: suave */
-.phase-card.is-dimmed {
-    opacity: 0.7;
-    transform: scale(0.99);
-}
-.phase-card.is-dimmed::before { opacity: 0.3; }
-
-/* Heading de fase — Momentum / Acelera / Inyecta como hero del card */
-.phase-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent);
-}
-
-.bullet-mark { color: var(--accent); opacity: 0.85; }
-
 /* ─── EYEBROW ───────────────────────────────────────────────────── */
 .eyebrow {
     display: inline-flex;
@@ -150,7 +91,7 @@ body {
     box-shadow: 0 0 8px var(--accent-blue);
 }
 
-/* ─── FLYWHEEL HUBSPOT-STYLE — disco integrado ──────────────────── */
+/* ─── FLYWHEEL (ÓRBITAS ESTILO ULAN SOFTWARE) ───────────────────── */
 .flywheel-disk-wrapper {
     position: relative;
     width: 100%;
@@ -170,34 +111,175 @@ body {
     to   { transform: rotate(360deg); }
 }
 
-/* Satélite que orbita el disco — único elemento de movimiento */
 .flywheel-satellite {
     transform-origin: 300px 300px;
     animation: spin 90s linear infinite;
 }
 
-/* Sectores */
-.flywheel-sector {
-    transition: fill 380ms ease;
-}
-.flywheel-sector:hover {
-    /* fill change handled by React state via fill attribute */
+/* --- CONTENEDOR DE PÍLDORAS Y TOOLTIPS --- */
+.pill-container {
+    position: absolute;
+    z-index: 25;
+    transform: translate(-50%, -50%);
 }
 
-/* Hub center (overlay HTML sobre el SVG disco) — compacto */
+.pill-label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 8px;
+    background: rgba(10, 14, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    backdrop-filter: blur(8px);
+}
+
+.pill-container.is-active .pill-label {
+    background: rgba(16, 22, 32, 0.95);
+    border-color: color-mix(in srgb, var(--sec-accent) 50%, rgba(255,255,255,0.2));
+    transform: scale(1.05); 
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--sec-accent) 15%, transparent);
+}
+
+.pill-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    color: var(--sec-accent);
+    background: color-mix(in srgb, var(--sec-accent) 10%, transparent);
+    transition: all 300ms ease;
+}
+
+.pill-container.is-active .pill-icon {
+    background: var(--sec-accent);
+    color: #000;
+}
+
+.pill-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.02em;
+    transition: color 300ms ease;
+}
+
+.pill-container.is-active .pill-text {
+    color: #ffffff;
+}
+
+/* --- TOOLTIPS FIJOS (Los Bullets en las zonas rojas) --- */
+.pill-tooltip {
+    position: absolute;
+    /* Dimensiones fijas para uniformidad visual */
+    width: 260px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrado vertical interno */
+    
+    background: rgba(10, 14, 20, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 0 16px;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    pointer-events: none; 
+}
+
+/* El tooltip SOLO aparece si hacemos HOVER, no si está "activo/clickeado" */
+.pill-container.is-hovered .pill-tooltip,
+.pill-container:hover .pill-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Posiciones exactas (Zonas Rojas) y sus animaciones SOLO al Hover */
+.tooltip-pos-0 { /* Momentum (Arriba): hacia la derecha */
+    top: 50%;
+    left: 110%;
+    transform: translateY(-50%) translateX(-10px);
+}
+.pill-container.is-hovered .tooltip-pos-0,
+.pill-container:hover .tooltip-pos-0 {
+    transform: translateY(-50%) translateX(0);
+}
+
+.tooltip-pos-1 { /* Acelera (Abajo Derecha): hacia abajo */
+    top: 130%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+}
+.pill-container.is-hovered .tooltip-pos-1,
+.pill-container:hover .tooltip-pos-1 {
+    transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-pos-2 { /* Inyecta (Abajo Izquierda): hacia abajo */
+    top: 130%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+}
+.pill-container.is-hovered .tooltip-pos-2,
+.pill-container:hover .tooltip-pos-2 {
+    transform: translateX(-50%) translateY(0);
+}
+
+.pill-tooltip-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.pill-tooltip-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.4;
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+}
+
+/* --- MAGIA RESPONSIVA --- */
+@media (min-width: 768px) {
+    /* En Desktop: Ocultamos el panel grande de abajo, porque tenemos tooltips */
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+    /* En Móvil: Ocultamos los tooltips (evita overflow) y mostramos el panel abajo */
+    .pill-tooltip {
+        display: none !important;
+    }
+}
+
+/* --- CENTRO DINÁMICO --- */
 .hub-center-disk {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 30;
-    width: 40%;
-    height: 40%;
+    width: 42%;
+    height: 42%;
     border-radius: 50%;
-    background:
-        radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--hub-accent) 22%, transparent) 0%, rgba(3, 4, 6, 0.92) 75%);
-    box-shadow:
-        0 0 70px color-mix(in srgb, var(--hub-accent) 22%, transparent),
-        inset 0 0 40px color-mix(in srgb, var(--hub-accent) 10%, transparent);
+    background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--hub-accent) 8%, transparent) 0%, rgba(6, 8, 12, 0.95) 75%);
+    box-shadow: inset 0 0 20px color-mix(in srgb, var(--hub-accent) 5%, transparent);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -205,74 +287,18 @@ body {
     text-align: center;
     padding: 0 1rem;
     pointer-events: none;
-    transition: background 480ms ease, box-shadow 480ms ease;
+    transition: all 400ms ease;
+    border: 1px solid rgba(255,255,255,0.03);
 }
 
-/* Sector labels — HTML overlay sobre los path SVG */
-.sector-label {
-    position: absolute;
-    z-index: 25;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    background: transparent;
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    color: var(--sec-accent);
-    transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.sector-label:hover,
-.sector-label.is-active {
-    transform: translate(-50%, -50%) scale(1.06);
-}
-.sector-label:focus-visible {
-    outline: 2px solid var(--sec-accent);
-    outline-offset: 4px;
-    border-radius: 8px;
+@media (max-width: 640px) {
+    .pill-label { padding: 4px 10px 4px 6px; }
+    .pill-text { font-size: 11px; }
+    .pill-icon { width: 20px; height: 20px; }
+    .hub-center-disk h3 { font-size: 28px !important; }
 }
 
-.sector-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid color-mix(in srgb, var(--sec-accent) 35%, transparent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 4px;
-    color: var(--sec-accent);
-    transition: all 380ms ease;
-    backdrop-filter: blur(4px);
-}
-.sector-label.is-active .sector-icon {
-    background: color-mix(in srgb, var(--sec-accent) 12%, rgba(0, 0, 0, 0.4));
-    border-color: var(--sec-accent);
-    box-shadow: 0 0 16px color-mix(in srgb, var(--sec-accent) 40%, transparent);
-}
-
-.sector-idx {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-}
-.sector-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--sec-accent);
-    text-shadow: 0 0 14px color-mix(in srgb, var(--sec-accent) 40%, transparent);
-}
-
-/* Detail panel debajo del disco */
+/* Detail panel debajo del disco (Móvil) */
 .flywheel-detail {
     max-width: 600px;
     margin: 3rem auto 0;
@@ -300,24 +326,7 @@ body {
     text-align: left;
 }
 
-@keyframes hub-pulse {
-    0%, 100% { opacity: 0.45; transform: scale(1); }
-    50%      { opacity: 1; transform: scale(1.04); }
-}
-@keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: 0.4; transform: scale(0.85); }
-}
-
-/* Mobile: ajustes de label sizing */
-@media (max-width: 640px) {
-    .sector-icon { width: 32px; height: 32px; }
-    .sector-name { font-size: 11px; }
-    .sector-idx { font-size: 8px; }
-    .hub-center-disk h3 { font-size: 32px !important; }
-}
-
-/* ─── ANIMACIONES DE ENTRADA ────────────────────────────────────── */
+/* ─── ANIMACIONES DE ENTRADA GENERALES ──────────────────────────── */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -380,7 +389,7 @@ body {
     pointer-events: none;
 }
 
-/* ─── CLIENT LOGOS — borderless flex row ────────────────────────── */
+/* ─── CLIENT LOGOS ──────────────────────────────────────────────── */
 .client-logos {
     display: flex;
     flex-wrap: wrap;
@@ -514,7 +523,6 @@ body {
     isolation: isolate;
 }
 
-/* Browser chrome estilo macOS */
 .browser-chrome {
     height: 42px;
     display: grid;
@@ -596,7 +604,6 @@ body {
     width: 100%;
 }
 
-/* Responsive: en mobile, el URL bar se compacta */
 @media (max-width: 640px) {
     .browser-chrome { grid-template-columns: 70px 1fr 0; padding: 0 12px; }
     .chrome-meta { display: none; }
@@ -700,11 +707,9 @@ body {
     border-right: 1px solid var(--hairline);
     border-bottom: 1px solid var(--hairline);
 }
-/* Mobile (2 cols): última col sin border-right; últimas 2 sin border-bottom */
 .trust-stat:nth-child(2n) { border-right: 0; }
 .trust-stat:nth-last-child(-n+2) { border-bottom: 0; }
 @media (min-width: 768px) {
-    /* Desktop (4 cols): la 4ta sin border-right; todas sin border-bottom */
     .trust-stat { border-bottom: 0; }
     .trust-stat:nth-child(2n) { border-right: 1px solid var(--hairline); }
     .trust-stat:nth-child(4n) { border-right: 0; }
@@ -823,6 +828,14 @@ body {
     transform: scale(1.08);
     box-shadow: 0 18px 36px -8px rgba(37, 211, 102, 0.6),
                 0 6px 16px -4px rgba(0, 0, 0, 0.5);
+}
+@keyframes hub-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.04); }
+}
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.85); }
 }
 .floating-whatsapp::after {
     content: "";

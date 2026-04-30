@@ -5,6 +5,7 @@ import ParaQuien from './components/ParaQuien.jsx'
 import Clients from './components/Clients.jsx'
 import Founders from './components/Founders.jsx'
 import DiagnosticoRapido from './components/DiagnosticoRapido.jsx'
+import FAQ from './components/FAQ.jsx' // <-- IMPORTAR AQUÍ
 import Booking from './components/Booking.jsx'
 import Footer from './components/Footer.jsx'
 import FloatingWhatsApp from './components/FloatingWhatsApp.jsx'
@@ -24,6 +25,7 @@ export default function App() {
                 <DiagnosticoRapido />
                 <Clients />
                 <Founders />
+                <FAQ /> {/* <-- AGREGAR AQUÍ (Justo antes de Booking) */}
                 <Booking />
             </main>
 

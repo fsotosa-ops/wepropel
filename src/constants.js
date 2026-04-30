@@ -13,10 +13,10 @@ export const WHATSAPP_PREFILL = 'Hola Growth Social Impact! Vengo del sitio web 
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_PREFILL)}`
 
 export const TRUST_STATS = [
-    { num: '+100M', label: 'Vidas alcanzadas' },
-    { num: '+400', label: 'Organizaciones' },
-    { num: '$10M', label: 'Fondos catalizados' },
-    { num: '500+', label: 'Líderes sociales' },
+    { num: '+$1M', label: 'USD Recaudados' },
+    { num: '+70%', label: 'Aceleración Operativa' },
+    { num: '1.5x', label: 'Aumento Ticket Base' },
+    { num: '7x', label: 'Aumento Ticket Nuevo' },
 ]
 
 /* Verticales del ICP-GSI sección 4 */
@@ -26,20 +26,27 @@ export const VERTICALES = ['Educación', 'Salud', 'Empleabilidad', 'Microfinanza
  * Trigger statements (señales de compra del ICP-GSI sección 4).
  * Cada item: parts = [prefijo, highlight, sufijo]. El highlight se renderiza en blanco.
  */
+/**
+ * Trigger statements (señales de compra del ICP-GSI sección 4).
+ * Rediseñados para pasar el Caveman Test con títulos de "Dolor/Oportunidad".
+ */
 export const TRIGGERS = [
     {
-        idx: '01',
-        accent: '#60a5fa',
-        parts: ['Eres fellow de ', 'Propel, Ashoka', ' u otra aceleradora de impacto.'],
+        id: 'T1',
+        title: 'Colapso Operativo',
+        accent: '#f87171', /* Red/Warning */
+        description: 'Tu equipo (15-50 personas) opera con Google Sheets o herramientas desconectadas que ya llegaron a su límite y frenan la ejecución.'
     },
     {
-        idx: '02',
-        accent: '#818cf8',
-        parts: ['Estás postulando a ', 'fondos +$50K USD', ' y necesitás justificación técnica nivel senior.'],
+        id: 'T2',
+        title: 'Levantamiento de Fondos',
+        accent: '#34d399', /* Green/Capital */
+        description: 'Postulas a fondos de +$50K USD (GORE, BID) y necesitas una arquitectura técnica nivel senior para asegurar la adjudicación.'
     },
     {
-        idx: '03',
-        accent: '#a78bfa',
-        parts: ['Tu equipo de ', '15-50 personas', ' opera con Google Sheets que ya llegó a su límite.'],
+        id: 'T3',
+        title: 'Aceleración Activa',
+        accent: '#a78bfa', /* Purple/Ecosystem */
+        description: 'Eres fellow de Propel, Ashoka u otra red global y necesitas un partner técnico confiable para ejecutar tu visión.'
     },
 ]

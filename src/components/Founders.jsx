@@ -13,7 +13,7 @@ const FOUNDERS = [
         role: 'Founder & Lead Architect',
         company: 'SUMADOTS FOR IMPACT',
         // Bio súper reducida, escaneable y letal:
-        bio: 'He escalado arquitecturas para +100M de usuarios en LATAM (Mercado Libre, Falabella). Hoy lidero Sumadots y su vertical S4i y la trazabilidad de datos en la Amazonía (Red Impacto Latam). Mi misión: aplicar rigor Big Tech a los desafíos sociales para que la tecnología sea tu motor, no tu techo.',
+        bio: 'Construí sistemas para +100M de usuarios en LATAM (Mercado Libre, Falabella). Actualmente lidero Sumadots (S4i) y proyectos de trazabilidad en la Amazonía con Red Impacto Latam. Mi misión es clara: inyectar el rigor del Big Tech a los desafíos sociales. Que la tecnología sea tu motor, no tu techo.',      
         milestones: ['+100M Usuarios Escalados', 'Comité Andino Amazónico', 'Mentor de Líderes Sociales (MIAMI · LATAM)'],
         photo: '/sumadots-founder.webp',
         accent: '#a78bfa'

@@ -2,10 +2,8 @@ import TestimonialCarousel from './TestimonialCarousel.jsx'
 
 /**
  * Sección de Clientes & Testimonios.
- *  - Logos de clientes en flex-row borderless arriba.
- *  - Testimonios en carrusel custom (auto-advance 7s, pausa on hover, keyboard nav).
- *
- * Para agregar más clientes: poné el archivo en `public/clients/` y agregalo al array CLIENT_LOGOS.
+ * - Logos de clientes en flex-row borderless arriba.
+ * - Testimonios en carrusel custom.
  */
 
 const CLIENT_LOGOS = [
@@ -16,31 +14,25 @@ const CLIENT_LOGOS = [
 
 const TESTIMONIALS = [
     {
-        accent: '#60a5fa',
-        quote: '[ Quote del cliente — copy a definir. Una frase corta que valide el trabajo y mencione un resultado concreto en métricas o impacto. ]',
-        name: 'Nombre del Cliente',
-        role: 'Rol · Organización',
+        accent: '#a78bfa', /* Violeta claro para resaltar */
+        quote: 'S4i ha sido clave en la transformación de nuestros procesos internos, generando aprendizaje para nuestra organización y nuestros stakeholders. Su enfoque permite profesionalizar nuestro trabajo y enfrentar el desafío constante de avanzar en la transformación digital.',
+        name: 'Karen Sarabia',
+        role: 'Coordinadora de Transformación · América Solidaria Chile',
     },
     {
-        accent: '#a78bfa',
-        quote: '[ Segundo quote — idealmente complementario al primero, mencionando otra dimensión: rapidez de entrega, calidad técnica, o capacidad de captar fondos. ]',
+        accent: '#60a5fa', /* Azul de sistema */
+        quote: '[ Espacio para tu próximo caso de éxito. Idealmente de Focus o F Summer, enfocado en cómo la tecnología resolvió un cuello de botella específico. ]',
         name: 'Nombre del Cliente',
         role: 'Rol · Organización',
-    },
-    {
-        accent: '#818cf8',
-        quote: '[ Tercer quote — opcional. Útil para mostrar diversidad de casos: fundación, gobierno, sector privado-social, etc. ]',
-        name: 'Nombre del Cliente',
-        role: 'Rol · Organización',
-    },
+    }
 ]
 
 export default function Clients() {
     return (
-        <section id="clientes" className="pb-32 md:pb-40 max-w-5xl mx-auto scroll-mt-24">
+        <section id="clientes" className="pb-32 md:pb-40 max-w-5xl mx-auto scroll-mt-24 px-4">
             <div className="text-center mb-12 md:mb-14 max-w-2xl mx-auto">
                 <div className="eyebrow mb-5"><span>Trusted By · Casos de Impacto</span></div>
-                <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-5">
+                <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-5 leading-[1.1]">
                     Organizaciones que <span className="text-white/55">ya escalaron.</span>
                 </h3>
                 <p className="text-base md:text-lg text-white/65 font-light leading-relaxed">

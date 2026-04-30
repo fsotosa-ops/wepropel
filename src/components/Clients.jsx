@@ -1,60 +1,55 @@
 import TestimonialCarousel from './TestimonialCarousel.jsx'
 
-/**
- * Sección de Clientes & Testimonios.
- * - Logos de clientes en flex-row borderless arriba.
- * - Testimonios en carrusel custom.
- */
-
 const CLIENT_LOGOS = [
     { name: 'Focus', src: '/clients/focus-logo-white.png' },
-    { name: 'F Summer', src: '/clients/fsummer-logo-white.png' },
+    { name: 'Fundación Summer', src: '/clients/fsummer-logo-white.png' },
     { name: 'América Solidaria', src: '/clients/logo-white-anericasolidaria.svg' },
 ]
 
 const TESTIMONIALS = [
     {
-        accent: '#a78bfa', /* Violeta claro para resaltar */
-        quote: 'S4i ha sido clave en la transformación de nuestros procesos internos, generando aprendizaje para nuestra organización y nuestros stakeholders. Su enfoque permite profesionalizar nuestro trabajo y enfrentar el desafío constante de avanzar en la transformación digital.',
+        id: '01',
+        quote: 'S4i ha sido clave en la transformación de nuestros procesos internos, generando aprendizaje para nuestra organización y nuestros stakeholders. Su enfoque permite profesionalizar nuestro trabajo.',
         name: 'Karen Sarabia',
-        role: 'Coordinadora de Transformación · América Solidaria Chile',
+        role: 'Coordinadora de Transformación · América Solidaria',
+        verified: 'NODE_VERIFIED // AS_CHILE'
     },
     {
-        accent: '#60a5fa', /* Azul de sistema */
-        quote: '[ Espacio para tu próximo caso de éxito. Idealmente de Focus o F Summer, enfocado en cómo la tecnología resolvió un cuello de botella específico. ]',
-        name: 'Nombre del Cliente',
-        role: 'Rol · Organización',
+        id: '02',
+        quote: 'La ingeniería de Sumadots for Impact nos ha permitido llevar nuestra gestión de datos a un nivel de rigor corporativo. Es el aliado técnico que las fundaciones necesitan para escalar su propósito.',
+        name: 'Emanuel Pacheco',
+        role: 'Director Ejecutivo · Fundación Summer',
+        verified: 'NODE_VERIFIED // F_SUMMER'
     }
 ]
 
 export default function Clients() {
     return (
-        <section id="clientes" className="pb-32 md:pb-40 max-w-5xl mx-auto scroll-mt-24 px-4">
-            <div className="text-center mb-12 md:mb-14 max-w-2xl mx-auto">
-                <div className="eyebrow mb-5"><span>Trusted By · Casos de Impacto</span></div>
+        <section id="clientes" className="pb-32 pt-20 max-w-5xl mx-auto scroll-mt-24 px-6">
+            
+            {/* 1. Header Restaurado */}
+            <div className="text-center mb-16 max-w-2xl mx-auto">
+                <div className="eyebrow mb-5"><span>Trusted By</span></div>
                 <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-5 leading-[1.1]">
                     Organizaciones que <span className="text-white/55">ya escalaron.</span>
                 </h3>
-                <p className="text-base md:text-lg text-white/65 font-light leading-relaxed">
-                    Equipos de impacto, fundaciones y proyectos público-privados que ya operan sobre nuestro framework.
-                </p>
             </div>
 
-            {/* Logos de clientes */}
-            <div className="client-logos mb-16">
+            {/* 2. Logos Prominentes (Restaurados a su posición y tamaño original) */}
+            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 mb-24 opacity-60 hover:opacity-100 transition-opacity duration-500">
                 {CLIENT_LOGOS.map((c) => (
                     <img
                         key={c.name}
                         src={c.src}
                         alt={c.name}
-                        title={c.name}
-                        loading="lazy"
+                        className="h-8 md:h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-500"
                     />
                 ))}
             </div>
 
-            {/* Carrusel de testimonios */}
+            {/* 3. Carrusel Dinámico de Testimonios (Sin fotos, diseño heroico) */}
             <TestimonialCarousel items={TESTIMONIALS} />
+            
         </section>
     )
 }

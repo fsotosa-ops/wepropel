@@ -24,7 +24,8 @@ export default function Nav() {
                     <a href="#servicios" className="nav-link">Servicios</a>
                     <a href="#para-quien" className="nav-link">Para Quién</a>
                     <a href="#clientes" className="nav-link">Clientes</a>
-                    <a href="#founders" className="nav-link">Founders</a>
+                    {/* Cambio de "Founders" a "Quiénes somos" */}
+                    <a href="#founders" className="nav-link">Quiénes somos</a>
                     <a href="#agenda" className="nav-cta">
                         Iniciar conversación
                         <span className="arrow">→</span>

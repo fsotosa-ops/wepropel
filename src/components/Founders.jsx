@@ -1,90 +1,103 @@
+import { useState } from 'react'
+
 /**
- * Founders / Nosotros section.
- * Logos solo en el alliance lockup. Career chips por founder = trust signals.
- * Joint credential pill arriba refuerza Guide SB7.
+ * Sección Founders v2.0 — Estilo Autoridad Sebastian Marin
+ * Enfocada en el Caveman Test: "Rigor Microsoft + Estrategia Social"
  */
 
 const FOUNDERS = [
     {
-        photo: '/sumadots-founder.webp',
+        id: 'pipe',
+        tag: '[ THE_ARCHITECT ]',
         name: 'Pipe Soto',
-        role: 'Founder & Tech Strategist',
-        company: 'Sumadots · Founder',
-        credentials: ['ex-Microsoft', 'ex-JLL', '+100M usuarios escalados'],
-        accent: '#a78bfa',
-        accentTextClass: 'text-purple-300/85',
-        quote: 'Tras escalar soluciones para más de 100 millones de usuarios, diseño la arquitectura técnica que elimina tu techo de crecimiento.',
+        role: 'Founder & Lead Architect',
+        company: 'SUMADOTS',
+        bio: 'Ex-Microsoft y ex-JLL. He diseñado y escalado arquitecturas para más de 100 millones de usuarios. Mi enfoque no es solo "que funcione", sino que tu sistema sea inatacable y escalable a nivel ingeniería Big Tech.',
+        milestones: ['+100M Usuarios Escalados', 'Microsoft Alumni', 'Cloud Native Expert'],
+        photo: '/sumadots-founder.webp',
+        accent: '#a78bfa'
     },
     {
-        photo: '/groddies-founder.webp',
+        id: 'ed',
+        tag: '[ THE_STRATEGIST ]',
         name: 'Ed Spohr',
-        role: 'Strategic Associate',
-        company: 'Growth Buddies · Founder',
-        credentials: ['Miami × LatAm', 'Strategy & Adoption', 'Transformación Operativa'],
-        accent: '#60a5fa',
-        accentTextClass: 'text-blue-300/85',
-        quote: 'Como asociado experto en negocio, me encargo de que la potencia técnica de Sumadots se traduzca en adopción y retorno real.',
-    },
+        role: 'Founder & Growth Strategy',
+        company: 'GROWTH BUDDIES',
+        bio: 'Experto en transformación operativa y adopción tecnológica en Miami y LatAm. Mi obsesión es que la tecnología se traduzca en retorno real: que tu equipo la use y tus indicadores de impacto social se muevan.',
+        milestones: ['Partner Tech Propel', 'Miami Impact Network', 'ROI Social Architect'],
+        photo: '/groddies-founder-2.jpeg',
+        accent: '#60a5fa'
+    }
 ]
 
 export default function Founders() {
     return (
-        <section id="founders" className="pb-32 md:pb-40 max-w-5xl mx-auto scroll-mt-24">
-            <div className="text-center mb-12 md:mb-14 max-w-2xl mx-auto">
-                {/* Alliance lockup */}
-                <div className="alliance-lockup mb-6">
-                    <img src="/groddiesLogo.png" alt="Growth Buddies" />
-                    <span className="x-divider">×</span>
-                    <img src="/suma-icon.svg" alt="Sumadots" />
-                </div>
-
-                {/* Approach line — del ICP-GSI sección 3 */}
-                <p className="font-mono text-[11px] text-white/50 uppercase tracking-[0.22em] mb-7">
-                    Más que fábrica de software · Socios estratégicos en ROI Social
-                </p>
-
-                <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-5">
-                    Dos founders. <span className="text-white/55">Una alianza.</span>
-                </h3>
-                <p className="text-base md:text-lg text-white/65 font-light leading-relaxed">
-                    <span className="text-white">Growth Social Impact</span> nace de la unión entre{' '}
-                    <span className="font-mono text-purple-300 text-[15px]">SUMADOTS</span> y{' '}
-                    <span className="font-mono text-blue-300 text-[15px]">GROWTH BUDDIES</span> — dos empresas con un objetivo común: escalar impacto con rigor de ingeniería y disciplina de growth.
-                </p>
+        <section id="founders" className="pt-24 pb-40 max-w-6xl mx-auto scroll-mt-24">
+            
+            {/* Cabecera de Autoridad */}
+            <div className="mb-20">
+                <div className="eyebrow mb-6"><span>La Alianza · s4i</span></div>
+                <h2 className="text-4xl md:text-6xl font-extrabold text-white tracking-tighter leading-[1.1] max-w-3xl">
+                    Dos mundos.<br />
+                    <span className="text-white/45 italic font-light">Una sola obsesión:</span><br />
+                    Escalar el ROI Social.
+                </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-                {FOUNDERS.map((f) => (
-                    <article key={f.name} className="panel p-8" style={{ '--accent': f.accent }}>
-                        <div className="flex items-start gap-5 mb-6">
-                            <div className="founder-photo">
-                                <img src={f.photo} alt={`${f.name} — ${f.company}`} />
+            {/* Grid de Founders estilo Marín */}
+            <div className="flex flex-col gap-32">
+                {FOUNDERS.map((f, idx) => (
+                    <div 
+                        key={f.id} 
+                        className={`flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-20 items-center`}
+                    >
+                        {/* Imagen con marco técnico */}
+                        <div className="w-full md:w-5/12 relative group">
+                            <div 
+                                className="absolute -inset-4 border border-white/5 rounded-2xl -z-10 group-hover:border-white/10 transition-colors"
+                            />
+                            <div className="aspect-[4/5] rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 bg-white/5 border border-white/10">
+                                <img 
+                                    src={f.photo} 
+                                    alt={f.name} 
+                                    className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+                                />
                             </div>
-                            <div className="flex-1 min-w-0">
-                                <h4 className="text-xl font-bold text-white tracking-tight">{f.name}</h4>
-                                <p className={`font-mono text-[11px] uppercase tracking-[0.22em] mt-1.5 ${f.accentTextClass}`}>
-                                    {f.role}
-                                </p>
-                                <p className="font-mono text-[10px] text-white/55 uppercase tracking-[0.22em] mt-2">
-                                    {f.company}
-                                </p>
+                            {/* Marca de agua / Tag vertical */}
+                            <div className="absolute top-8 -right-4 md:-right-8 origin-bottom-right -rotate-90">
+                                <span className="font-mono text-[10px] text-white/20 uppercase tracking-[0.4em] whitespace-nowrap">
+                                    Engineering Authority // {f.company}
+                                </span>
                             </div>
                         </div>
 
-                        {/* Career chips */}
-                        <div className="flex flex-wrap gap-1.5 mb-6">
-                            {f.credentials.map((c) => (
-                                <span key={c} className="credential-chip">{c}</span>
-                            ))}
-                        </div>
-
-                        <div className="quote-block">
-                            <p className="font-mono text-[10px] text-white/35 uppercase tracking-[0.28em] mb-3">[ Testimonial ]</p>
-                            <p className="text-[16px] text-white/80 italic font-light leading-relaxed">
-                                "{f.quote}"
+                        {/* Contenido de Texto */}
+                        <div className="w-full md:w-7/12">
+                            <span className="font-mono text-[11px] uppercase tracking-[0.3em] mb-4 block" style={{ color: f.accent }}>
+                                {f.tag}
+                            </span>
+                            <h3 className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
+                                {f.name}
+                            </h3>
+                            <p className="font-mono text-[12px] text-white/40 uppercase tracking-widest mb-8">
+                                {f.role} · {f.company}
                             </p>
+                            
+                            <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed mb-10 max-w-xl">
+                                {f.bio}
+                            </p>
+
+                            {/* Milestones / Credenciales */}
+                            <div className="flex flex-wrap gap-x-8 gap-y-4 pt-8 border-t border-white/5">
+                                {f.milestones.map(m => (
+                                    <div key={m} className="flex items-center gap-3">
+                                        <div className="w-1 h-1 rounded-full" style={{ backgroundColor: f.accent }} />
+                                        <span className="font-mono text-[10px] text-white/60 uppercase tracking-widest">{m}</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </article>
+                    </div>
                 ))}
             </div>
         </section>

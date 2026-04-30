@@ -91,6 +91,41 @@ body {
     box-shadow: 0 0 8px var(--accent-blue);
 }
 
+/* ─── NAV LINKS & CTA (ACTUALIZADO PARA RESALTAR) ───────────────── */
+.nav-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 220ms ease, border-color 220ms ease;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+}
+.nav-link:hover {
+    color: rgba(255, 255, 255, 0.95);
+    border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #030406;
+    padding: 8px 18px;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 999px;
+    transition: all 240ms cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+.nav-cta:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+.nav-cta .arrow { display: inline-block; margin-left: 6px; transition: transform 220ms ease; }
+.nav-cta:hover .arrow { transform: translateX(2px); }
+
 /* ─── FLYWHEEL (ÓRBITAS ESTILO ULAN SOFTWARE) ───────────────────── */
 .flywheel-disk-wrapper {
     position: relative;
@@ -177,18 +212,15 @@ body {
 /* --- TOOLTIPS FIJOS (Los Bullets en las zonas rojas) --- */
 .pill-tooltip {
     position: absolute;
-    /* Dimensiones fijas para uniformidad visual */
     width: 260px;
     height: 120px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centrado vertical interno */
-    
+    justify-content: center;
     background: rgba(10, 14, 20, 0.75);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     padding: 0 16px;
-    
     opacity: 0;
     visibility: hidden;
     transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -197,15 +229,14 @@ body {
     pointer-events: none; 
 }
 
-/* El tooltip SOLO aparece si hacemos HOVER, no si está "activo/clickeado" */
 .pill-container.is-hovered .pill-tooltip,
 .pill-container:hover .pill-tooltip {
     opacity: 1;
     visibility: visible;
 }
 
-/* Posiciones exactas (Zonas Rojas) y sus animaciones SOLO al Hover */
-.tooltip-pos-0 { /* Momentum (Arriba): hacia la derecha */
+/* Posiciones exactas (Zonas Rojas) */
+.tooltip-pos-0 { 
     top: 50%;
     left: 110%;
     transform: translateY(-50%) translateX(-10px);
@@ -215,7 +246,7 @@ body {
     transform: translateY(-50%) translateX(0);
 }
 
-.tooltip-pos-1 { /* Acelera (Abajo Derecha): hacia abajo */
+.tooltip-pos-1 { 
     top: 130%;
     left: 50%;
     transform: translateX(-50%) translateY(-10px);
@@ -225,7 +256,7 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-.tooltip-pos-2 { /* Inyecta (Abajo Izquierda): hacia abajo */
+.tooltip-pos-2 { 
     top: 130%;
     left: 50%;
     transform: translateX(-50%) translateY(-10px);
@@ -256,17 +287,10 @@ body {
 
 /* --- MAGIA RESPONSIVA --- */
 @media (min-width: 768px) {
-    /* En Desktop: Ocultamos el panel grande de abajo, porque tenemos tooltips */
-    .mobile-only {
-        display: none !important;
-    }
+    .mobile-only { display: none !important; }
 }
-
 @media (max-width: 767px) {
-    /* En Móvil: Ocultamos los tooltips (evita overflow) y mostramos el panel abajo */
-    .pill-tooltip {
-        display: none !important;
-    }
+    .pill-tooltip { display: none !important; }
 }
 
 /* --- CENTRO DINÁMICO --- */
@@ -326,7 +350,120 @@ body {
     text-align: left;
 }
 
-/* ─── ANIMACIONES DE ENTRADA GENERALES ──────────────────────────── */
+/* ─── TERMINAL GAMIFICADA (Diagnóstico Rápido) ──────────────────── */
+.diagnostico-terminal {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    background: rgba(6, 8, 12, 0.7);
+    overflow: hidden;
+    min-height: 440px;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: border-color 320ms ease;
+}
+.diagnostico-terminal:focus-within { 
+    border-color: rgba(96, 165, 250, 0.3); 
+    box-shadow: 0 0 30px rgba(96, 165, 250, 0.1);
+}
+
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-body {
+    padding: 2rem 2.5rem;
+    min-height: 380px;
+}
+@media (max-width: 640px) {
+    .terminal-body { padding: 1.5rem 1.2rem; }
+}
+
+.terminal-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.015);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    font-weight: 400;
+    transition: all 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+}
+.terminal-option:hover {
+    border-color: rgba(96, 165, 250, 0.4);
+    background: rgba(96, 165, 250, 0.05);
+    transform: translateX(4px);
+    box-shadow: inset 4px 0 0 rgba(96, 165, 250, 0.8);
+}
+
+.terminal-option-arrow {
+    opacity: 0;
+    color: rgba(96, 165, 250, 0.8);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 200ms ease;
+    transform: translateX(-10px);
+}
+.terminal-option:hover .terminal-option-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.terminal-recommendation {
+    border: 1px solid;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+.terminal-recommendation::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: currentColor;
+    opacity: 0.5;
+}
+
+/* ─── FOUNDERS v2.0 (ESTILO MARIN / S4I) ────────────────────────── */
+#founders .aspect-\[4\/5\] {
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+}
+#founders h2 span.italic {
+    text-underline-offset: 8px;
+    text-decoration: underline rgba(255,255,255,0.05);
+}
+.md\:flex-row, .md\:flex-row-reverse {
+    opacity: 1;
+    transition: all 1s ease-out;
+}
+.founder-photo-v2 {
+    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(10%);
+}
+
+/* ─── ANIMACIONES GLOBALES ──────────────────────────────────────── */
+.animate-fadeIn {
+    animation: fadeInCenter 300ms ease forwards;
+}
+@keyframes fadeInCenter {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -336,279 +473,6 @@ body {
 .reveal-d2 { animation-delay: 200ms; }
 .reveal-d3 { animation-delay: 340ms; }
 .reveal-d4 { animation-delay: 480ms; }
-
-/* ─── QUOTE BLOCK ───────────────────────────────────────────────── */
-.quote-block {
-    position: relative;
-    padding-left: 1.5rem;
-    border-left: 2px solid var(--accent);
-}
-
-/* ─── ALLIANCE LOCKUP & FOUNDER PHOTOS ──────────────────────────── */
-.alliance-lockup {
-    display: inline-flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--hairline);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-}
-.alliance-lockup img { height: 40px; width: auto; opacity: 0.95; object-fit: contain; }
-.alliance-lockup .x-divider {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.3);
-    font-weight: 300;
-    letter-spacing: 0.1em;
-}
-
-.founder-photo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
-    border: 1px solid var(--hairline-strong);
-}
-.founder-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-}
-.founder-photo::after {
-    content: "";
-    position: absolute;
-    inset: -6px;
-    border-radius: 50%;
-    border: 1px dashed var(--accent);
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-/* ─── CLIENT LOGOS ──────────────────────────────────────────────── */
-.client-logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2.5rem 4rem;
-    padding: 2rem 1rem;
-}
-.client-logos img {
-    height: 36px;
-    width: auto;
-    max-width: 180px;
-    opacity: 0.55;
-    object-fit: contain;
-    transition: opacity 280ms ease;
-}
-.client-logos img:hover { opacity: 1; }
-@media (max-width: 640px) {
-    .client-logos { gap: 2rem 3rem; padding: 1.5rem 0.5rem; }
-    .client-logos img { height: 28px; }
-}
-
-.client-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 1px dashed var(--hairline-strong);
-    background: rgba(255, 255, 255, 0.02);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: rgba(255, 255, 255, 0.35);
-    flex-shrink: 0;
-}
-
-/* ─── NAV LINKS & CTA ───────────────────────────────────────────── */
-.nav-link {
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.55);
-    transition: color 220ms ease, border-color 220ms ease;
-    padding-bottom: 2px;
-    border-bottom: 1px solid transparent;
-}
-.nav-link:hover {
-    color: rgba(255, 255, 255, 0.95);
-    border-bottom-color: rgba(255, 255, 255, 0.25);
-}
-
-.nav-cta {
-    display: inline-flex;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 500;
-    color: white;
-    padding: 7px 14px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 999px;
-    transition: all 220ms ease;
-}
-.nav-cta:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.25);
-}
-.nav-cta .arrow { display: inline-block; margin-left: 6px; transition: transform 220ms ease; }
-.nav-cta:hover .arrow { transform: translateX(2px); }
-
-/* ─── CAROUSEL ──────────────────────────────────────────────────── */
-.carousel-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    border: 1px solid var(--hairline);
-    background: rgba(255, 255, 255, 0.025);
-    color: rgba(255, 255, 255, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 220ms ease;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-.carousel-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--hairline-strong);
-    color: white;
-}
-.carousel-btn:focus-visible {
-    outline: 2px solid var(--accent-blue);
-    outline-offset: 2px;
-}
-
-.carousel-dots { display: inline-flex; align-items: center; gap: 0.5rem; }
-.carousel-dot {
-    height: 6px;
-    width: 6px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.18);
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    transition: all 280ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.carousel-dot:hover { background: rgba(255, 255, 255, 0.4); }
-.carousel-dot.is-active {
-    width: 24px;
-    background: var(--accent-blue);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--accent-blue) 60%, transparent);
-}
-.carousel-dot:focus-visible {
-    outline: 2px solid var(--accent-blue);
-    outline-offset: 3px;
-}
-
-/* ─── BOOKING — macOS window mockup ─────────────────────────────── */
-.booking-frame {
-    position: relative;
-    border: 1px solid var(--hairline-strong);
-    border-radius: 14px;
-    background: linear-gradient(to bottom, #1a1d24 0%, #14171c 100%);
-    overflow: hidden;
-    box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.04),
-        0 50px 120px -30px rgba(0, 0, 0, 0.6),
-        0 30px 80px -30px rgba(59, 130, 246, 0.18);
-    isolation: isolate;
-}
-
-.browser-chrome {
-    height: 42px;
-    display: grid;
-    grid-template-columns: 80px 1fr 80px;
-    align-items: center;
-    padding: 0 14px;
-    background: linear-gradient(to bottom, #25282f 0%, #1c1f26 100%);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-.chrome-dots {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-.chrome-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 0.5px solid rgba(0, 0, 0, 0.3);
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-}
-.dot-red { background: #ff5f57; }
-.dot-yellow { background: #febc2e; }
-.dot-green { background: #28c840; }
-
-.chrome-url {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0, 0, 0, 0.32);
-    color: rgba(255, 255, 255, 0.7);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    padding: 5px 14px;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    max-width: 320px;
-    margin: 0 auto;
-}
-.chrome-url svg { color: rgba(255, 255, 255, 0.5); flex-shrink: 0; }
-.chrome-url-text { white-space: nowrap; }
-
-.chrome-meta {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-.chrome-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    color: rgba(96, 165, 250, 0.85);
-    text-transform: uppercase;
-    padding: 3px 7px;
-    border: 1px solid rgba(96, 165, 250, 0.25);
-    border-radius: 4px;
-    background: rgba(96, 165, 250, 0.06);
-}
-.chrome-tag::before {
-    content: "";
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: #28c840;
-    box-shadow: 0 0 6px #28c840;
-    animation: pulse-dot 2s ease-in-out infinite;
-}
-
-.booking-frame iframe {
-    display: block;
-    background: white;
-    width: 100%;
-}
-
-@media (max-width: 640px) {
-    .browser-chrome { grid-template-columns: 70px 1fr 0; padding: 0 12px; }
-    .chrome-meta { display: none; }
-    .chrome-url { font-size: 10px; padding: 4px 10px; }
-}
 
 /* ─── CHIPS (capability + credential) ───────────────────────────── */
 .capability-chip {
@@ -683,11 +547,7 @@ body {
     border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-1px);
 }
-.cta-secondary .cta-arrow {
-    margin-left: 8px;
-    transition: transform 240ms ease;
-    display: inline-block;
-}
+.cta-secondary .cta-arrow { margin-left: 8px; transition: transform 240ms ease; display: inline-block; }
 .cta-secondary:hover .cta-arrow { transform: translateX(3px); }
 
 /* ─── TRUST NUMBERS STRIP ───────────────────────────────────────── */
@@ -734,75 +594,154 @@ body {
     text-transform: uppercase;
 }
 
-/* ─── DIAGNÓSTICO RÁPIDO (quiz) ─────────────────────────────────── */
-.diagnostico-card {
-    border: 1px solid var(--hairline);
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.012);
-    overflow: hidden;
-    min-height: 380px;
-    transition: border-color 320ms ease;
+/* ─── CLIENT LOGOS ──────────────────────────────────────────────── */
+.client-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem 4rem;
+    padding: 2rem 1rem;
 }
-.diagnostico-card:focus-within { border-color: var(--hairline-strong); }
+.client-logos img {
+    height: 36px;
+    width: auto;
+    max-width: 180px;
+    opacity: 0.55;
+    object-fit: contain;
+    transition: opacity 280ms ease;
+}
+.client-logos img:hover { opacity: 1; }
+@media (max-width: 640px) {
+    .client-logos { gap: 2rem 3rem; padding: 1.5rem 0.5rem; }
+    .client-logos img { height: 28px; }
+}
 
-.diagnostico-progress {
-    height: 2px;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 999px;
-    overflow: hidden;
-}
-.diagnostico-progress-fill {
-    height: 100%;
-    background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
-    transition: width 380ms cubic-bezier(0.22, 1, 0.36, 1);
-    border-radius: 999px;
-}
-
-.diagnostico-option {
+.client-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px dashed var(--hairline-strong);
+    background: rgba(255, 255, 255, 0.02);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    text-align: left;
-    padding: 14px 18px;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.35);
+    flex-shrink: 0;
+}
+
+/* ─── CAROUSEL ──────────────────────────────────────────────────── */
+.carousel-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
     border: 1px solid var(--hairline);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.018);
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 15px;
-    font-weight: 400;
+    background: rgba(255, 255, 255, 0.025);
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 220ms ease;
     cursor: pointer;
-    font-family: inherit;
+    flex-shrink: 0;
 }
-.diagnostico-option:hover {
-    border-color: rgba(96, 165, 250, 0.4);
-    background: rgba(96, 165, 250, 0.05);
-    transform: translateX(2px);
+.carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--hairline-strong);
+    color: white;
 }
-.diagnostico-option:focus-visible {
+.carousel-btn:focus-visible {
     outline: 2px solid var(--accent-blue);
     outline-offset: 2px;
 }
-.diagnostico-option-arrow {
-    opacity: 0.25;
-    color: white;
-    transition: all 220ms ease;
-    font-family: 'JetBrains Mono', monospace;
+
+.carousel-dots { display: inline-flex; align-items: center; gap: 0.5rem; }
+.carousel-dot {
+    height: 6px;
+    width: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    transition: all 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.diagnostico-option:hover .diagnostico-option-arrow {
-    opacity: 1;
-    color: var(--accent-blue);
-    transform: translateX(2px);
+.carousel-dot:hover { background: rgba(255, 255, 255, 0.4); }
+.carousel-dot.is-active {
+    width: 24px;
+    background: var(--accent-blue);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--accent-blue) 60%, transparent);
+}
+.carousel-dot:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 3px;
 }
 
-.diagnostico-recommendation {
-    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-    border-radius: 12px;
-    background: color-mix(in srgb, var(--accent) 5%, rgba(255, 255, 255, 0.012));
-    padding: 1.5rem;
-    max-width: 480px;
+/* ─── BOOKING — macOS window mockup ─────────────────────────────── */
+.booking-frame {
+    position: relative;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 14px;
+    background: linear-gradient(to bottom, #1a1d24 0%, #14171c 100%);
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 50px 120px -30px rgba(0, 0, 0, 0.6),
+        0 30px 80px -30px rgba(59, 130, 246, 0.18);
+    isolation: isolate;
+}
+
+.browser-chrome {
+    height: 42px;
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+    align-items: center;
+    padding: 0 14px;
+    background: linear-gradient(to bottom, #25282f 0%, #1c1f26 100%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.chrome-dots { display: flex; gap: 8px; align-items: center; }
+.chrome-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green { background: #28c840; }
+
+.chrome-url {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.32);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 5px 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    max-width: 320px;
     margin: 0 auto;
+}
+.chrome-url svg { color: rgba(255, 255, 255, 0.5); flex-shrink: 0; }
+.chrome-url-text { white-space: nowrap; }
+
+.chrome-meta { display: flex; justify-content: flex-end; align-items: center; }
+.booking-frame iframe { display: block; background: white; width: 100%; }
+
+@media (max-width: 640px) {
+    .browser-chrome { grid-template-columns: 70px 1fr 0; padding: 0 12px; }
+    .chrome-meta { display: none; }
+    .chrome-url { font-size: 10px; padding: 4px 10px; }
 }
 
 /* ─── WHATSAPP — floating + nav + inline + ctas ─────────────────── */
@@ -832,10 +771,6 @@ body {
 @keyframes hub-pulse {
     0%, 100% { opacity: 0.45; transform: scale(1); }
     50%      { opacity: 1; transform: scale(1.04); }
-}
-@keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: 0.4; transform: scale(0.85); }
 }
 .floating-whatsapp::after {
     content: "";

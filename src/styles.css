@@ -1,4 +1,4 @@
-/* ─── ROOT TOKENS ─────────────────────────────────────────────────── */
+/* ─── ROOT TOKENS (ACTUALIZADO A SUMADOTS BRANDING) ──────────────── */
 :root {
     --bg: #030406;
     --bg-soft: #06080c;
@@ -7,10 +7,10 @@
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-muted: rgba(255, 255, 255, 0.42);
-    --accent-blue: #60a5fa;
-    --accent-indigo: #818cf8;
-    --accent-purple: #a78bfa;
-    --hub-accent: #60a5fa;
+    --accent-brand: #7c3aed; /* Violeta Sumadots */
+    --accent-brand-light: #a78bfa; 
+    --accent-silver: #cbd5e1; /* Plata Suma */
+    --hub-accent: #7c3aed;
 }
 
 html { scroll-behavior: smooth; }
@@ -46,8 +46,8 @@ body {
     inset: 0;
     z-index: -1;
     background:
-        radial-gradient(ellipse 60% 45% at 50% 0%, rgba(59, 130, 246, 0.10), transparent 70%),
-        radial-gradient(ellipse 55% 40% at 50% 100%, rgba(139, 92, 246, 0.08), transparent 70%);
+        radial-gradient(ellipse 60% 45% at 50% 0%, rgba(124, 58, 237, 0.12), transparent 70%),
+        radial-gradient(ellipse 55% 40% at 50% 100%, rgba(167, 139, 250, 0.08), transparent 70%);
     pointer-events: none;
 }
 
@@ -87,8 +87,8 @@ body {
 .eyebrow .dot {
     width: 5px; height: 5px;
     border-radius: 50%;
-    background: var(--accent-blue);
-    box-shadow: 0 0 8px var(--accent-blue);
+    background: var(--accent-brand);
+    box-shadow: 0 0 8px var(--accent-brand);
 }
 
 /* ─── NAV LINKS & CTA (ACTUALIZADO PARA RESALTAR) ───────────────── */
@@ -363,8 +363,8 @@ body {
     transition: border-color 320ms ease;
 }
 .diagnostico-terminal:focus-within { 
-    border-color: rgba(96, 165, 250, 0.3); 
-    box-shadow: 0 0 30px rgba(96, 165, 250, 0.1);
+    border-color: rgba(124, 58, 237, 0.3); 
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.1);
 }
 
 .terminal-header {
@@ -401,15 +401,15 @@ body {
     cursor: pointer;
 }
 .terminal-option:hover {
-    border-color: rgba(96, 165, 250, 0.4);
-    background: rgba(96, 165, 250, 0.05);
+    border-color: rgba(124, 58, 237, 0.4);
+    background: rgba(124, 58, 237, 0.05);
     transform: translateX(4px);
-    box-shadow: inset 4px 0 0 rgba(96, 165, 250, 0.8);
+    box-shadow: inset 4px 0 0 rgba(124, 58, 237, 0.8);
 }
 
 .terminal-option-arrow {
     opacity: 0;
-    color: rgba(96, 165, 250, 0.8);
+    color: rgba(124, 58, 237, 0.8);
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.1em;
@@ -452,7 +452,7 @@ body {
     transition: all 1s ease-out;
 }
 .founder-photo-v2 {
-    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(10%);
+    filter: sepia(100%) hue-rotate(240deg) saturate(300%) brightness(10%);
 }
 
 /* ─── ANIMACIONES GLOBALES ──────────────────────────────────────── */
@@ -655,7 +655,7 @@ body {
     color: white;
 }
 .carousel-btn:focus-visible {
-    outline: 2px solid var(--accent-blue);
+    outline: 2px solid var(--accent-brand);
     outline-offset: 2px;
 }
 
@@ -673,11 +673,11 @@ body {
 .carousel-dot:hover { background: rgba(255, 255, 255, 0.4); }
 .carousel-dot.is-active {
     width: 24px;
-    background: var(--accent-blue);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--accent-blue) 60%, transparent);
+    background: var(--accent-brand);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--accent-brand) 60%, transparent);
 }
 .carousel-dot:focus-visible {
-    outline: 2px solid var(--accent-blue);
+    outline: 2px solid var(--accent-brand);
     outline-offset: 3px;
 }
 
@@ -691,7 +691,7 @@ body {
     box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.04),
         0 50px 120px -30px rgba(0, 0, 0, 0.6),
-        0 30px 80px -30px rgba(59, 130, 246, 0.18);
+        0 30px 80px -30px rgba(124, 58, 237, 0.15);
     isolation: isolate;
 }
 
@@ -785,89 +785,6 @@ body {
     .floating-whatsapp { width: 52px; height: 52px; bottom: 20px; right: 20px; }
 }
 
-.nav-whatsapp {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    color: #25D366;
-    border-radius: 999px;
-    transition: all 240ms ease;
-}
-.nav-whatsapp:hover {
-    background: rgba(37, 211, 102, 0.1);
-    transform: translateY(-1px);
-}
-
-.whatsapp-inline {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    color: rgba(37, 211, 102, 0.85);
-    border-bottom: 1px solid rgba(37, 211, 102, 0.3);
-    padding-bottom: 1px;
-    transition: all 200ms ease;
-}
-.whatsapp-inline:hover {
-    color: #25D366;
-    border-bottom-color: #25D366;
-}
-
-/* ─── CTA BARS (entre secciones) ────────────────────────────────── */
-.cta-bar {
-    margin-top: 4rem;
-    padding: 1.5rem 2rem;
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.012);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
-}
-@media (min-width: 640px) {
-    .cta-bar { flex-direction: row; justify-content: space-between; }
-}
-.cta-bar-text {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-.cta-bar-actions {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.cta-whatsapp {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 18px;
-    background: rgba(37, 211, 102, 0.1);
-    border: 1px solid rgba(37, 211, 102, 0.25);
-    color: #5fe899;
-    font-weight: 500;
-    font-size: 14px;
-    border-radius: 999px;
-    transition: all 240ms ease;
-}
-.cta-whatsapp:hover {
-    background: rgba(37, 211, 102, 0.16);
-    border-color: rgba(37, 211, 102, 0.45);
-    color: #7eecaf;
-    transform: translateY(-1px);
-}
-
-/* ─── CONTACT FALLBACKS (Booking section) ───────────────────────── */
 .contact-fallback {
     display: inline-flex;
     align-items: center;
@@ -896,4 +813,4 @@ body {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); }
-::selection { background: rgba(96, 165, 250, 0.3); color: white; }
+::selection { background: rgba(124, 58, 237, 0.3); color: white; }

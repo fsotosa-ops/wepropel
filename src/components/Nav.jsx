@@ -8,12 +8,12 @@ export default function Nav() {
         <>
             <nav className="max-w-6xl mx-auto px-6 md:px-10 py-7 flex justify-between items-center">
                 
-                {/* Logo Principal (AUMENTADO DE TAMAÑO) */}
+                {/* Logo Principal (Ajustado por ancho para darle máxima presencia) */}
                 <a href="#top" aria-label="Volver al inicio" className="flex items-center transition-transform hover:scale-[1.02]">
                     <img 
                         src="/sumadots_for_impact.png" 
                         alt="Sumadots for Impact" 
-                        className="h-12 md:h-16 w-auto object-contain"
+                        className="w-40 md:w-52 h-auto object-contain"
                     />
                 </a>
 

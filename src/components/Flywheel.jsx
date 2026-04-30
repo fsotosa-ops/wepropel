@@ -18,7 +18,7 @@ const PHASES = [
         name: 'Momentum',
         subtitle: 'Coaching y Entrenamiento',
         items: ['Framework propio, agilidad', 'Roadmap a 3 meses', 'Diagnóstico de brecha operativa'],
-        accent: '#60a5fa',
+        accent: '#cbd5e1', /* Plata Suma */
         icon: TerminalIcon,
     },
     {
@@ -27,7 +27,7 @@ const PHASES = [
         name: 'Acelera',
         subtitle: 'Construcción Tech Core',
         items: ['Desarrollo en Sprints (2 sem)', 'Inteligencia de Datos y BI', 'Motores de IA personalizados'],
-        accent: '#818cf8',
+        accent: '#a78bfa', /* Violeta Claro */
         icon: ServerIcon,
     },
     {
@@ -36,7 +36,7 @@ const PHASES = [
         name: 'Inyecta',
         subtitle: 'Blueprint para Fondos',
         items: ['Postulación a fondos (GORE, BID)', 'Business Case de impacto', 'Métricas de evidencia (Rigor Tech)'],
-        accent: '#a78bfa',
+        accent: '#7c3aed', /* Violeta Profundo Sumadots */
         icon: ChartIcon,
     },
 ]

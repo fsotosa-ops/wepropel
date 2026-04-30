@@ -10,7 +10,7 @@ const FOUNDERS = [
         id: 'pipe',
         tag: '[ THE_ARCHITECT ]',
         name: 'Pipe Soto',
-        role: 'Founder & Lead Architect',
+        role: 'Co-Founder & Lead Architect',
         company: 'SUMADOTS FOR IMPACT',
         // Bio súper reducida, escaneable y letal:
         bio: 'Construí sistemas para +100M de usuarios en LATAM (Mercado Libre, Falabella). Actualmente lidero Sumadots (S4i) y proyectos de trazabilidad en la Amazonía con Red Impacto Latam. Mi misión es clara: inyectar el rigor del Big Tech a los desafíos sociales. Que la tecnología sea tu motor, no tu techo.',      
@@ -22,10 +22,10 @@ const FOUNDERS = [
         id: 'ed',
         tag: '[ THE_STRATEGIST ]',
         name: 'Ed Spohr',
-        role: 'Director of Growth',
+        role: 'Co-Founder & Director of Growth',
         company: 'SUMADOTS FOR IMPACT',
-        bio: 'Experto en transformación operativa y adopción tecnológica en Miami y LatAm. Mi obsesión es que la tecnología se traduzca en retorno real: que tu equipo la use y tus indicadores de impacto social se muevan.',
-        milestones: ['Partner Tech Propel', 'Miami Impact Network', 'ROI Social Architect'],
+        bio: '15+ años diseñando soluciones digitales de alta adopción en LATAM, hoy enfocado en IA generativa y agentes inteligentes para fundaciones e instituciones de impacto social.',
+        milestones: ['Ex-Microsoft, JLL y Bechtel', 'Certificado Prosci, Scrum y Azure', 'Growth Buddies SpA'],
         photo: '/groddies-founder-2.jpeg',
         accent: '#60a5fa'
     }

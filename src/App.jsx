@@ -25,8 +25,9 @@ export default function App() {
                 <DiagnosticoRapido />
                 <Clients />
                 <Founders />
-                <FAQ /> {/* <-- AGREGAR AQUÍ (Justo antes de Booking) */}
+                
                 <Booking />
+                <FAQ /> {/* <-- AGREGAR AQUÍ (Justo antes de Booking) */}
             </main>
 
             <Footer />

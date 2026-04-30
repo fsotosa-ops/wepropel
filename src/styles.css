@@ -33,11 +33,13 @@ body {
     inset: 0;
     z-index: -2;
     background-image:
-        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+        /* Redujimos la opacidad de 0.025 a 0.012 (súper sutil) */
+        linear-gradient(to right, rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.012) 1px, transparent 1px);
     background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 40%, transparent 90%);
-    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 40%, transparent 90%);
+    /* Redujimos el radio de visión de la cuadrícula para que los bordes sean más oscuros */
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 80%);
     pointer-events: none;
 }
 

@@ -2,13 +2,13 @@
  * Constantes compartidas del sitio. Editables por el usuario sin tocar JSX.
  */
 
-export const CONTACT_EMAIL = 'hola@growthsocialimpact.com'
+export const CONTACT_EMAIL = 'felipe@sumadots.com'
 
 /* URL del Google Calendar Appointment Scheduling */
 export const BOOKING_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3vHSYQ5JYmIfIhA9NRWldmtt_E1oPA1iNGz-7AYFCQYfQMcBVNvSoQEOzt_t5f2tpXpFxd2TDa?gv=true'
 
 /* WhatsApp — número y prefill (default: Ed Spohr, public en growthbuddies.cl) */
-export const WHATSAPP_NUMBER = '56965863160'
+export const WHATSAPP_NUMBER = '56994989722'
 export const WHATSAPP_PREFILL = 'Hola Growth Social Impact! Vengo del sitio web y me gustaría agendar un diagnóstico de 30 min. ¿Podemos coordinar?'
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_PREFILL)}`
 
